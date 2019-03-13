@@ -251,5 +251,121 @@ public class db {
          System.out.println("SQL Exception : " + e.getMessage());
       }
    }
+   
+   
+   //Insert Into userinfocopy (select * from userinfo)
+   public void userinfocopy() {
+	      String sql = "Insert Into userinfocopy (select * from userinfo)";
+	      try {
+	         stmt = conn.createStatement();
+	         stmt.executeUpdate(sql);
+	         stmt.close();
+	      } catch (SQLException e) {
+	         System.out.println("SQL Exception : " + e.getMessage());
+	      }
+	   }
+   
+   public int departure(int i) {
+		int depcode = 0;
+		String query = "select code from subwaynogada, userinfocopy where userinfocopy.id = " + i + " and subwaynogada.name = userinfocopy.name";
+
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+				depcode = rs.getInt(1);
+			}
+			stmt.close();
+		}
+		catch (SQLException e) {
+			System.out.println("SQL Exception : " + e.getMessage());
+		}
+		
+		return depcode;
+	}
+	
+	public int destination(int i) {
+		int descode = 0;
+		String query = "SELECT code FROM rankSave WHERE user = "+ i +" and rank = 1";
+		//SELECT code FROM rankSave WHERE user = 1 and rank = 1
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+				descode = rs.getInt(1);
+			}
+			stmt.close();
+		}
+		catch (SQLException e) {
+			System.out.println("SQL Exception : " + e.getMessage());
+		}
+		
+		return descode;
+	}
+	
+	public int prefer(int i) {
+		int routecode = 0;
+		String query = "SELECT userRoute FROM userinfocopy WHERE id = "+ i;
+		//SELECT code FROM rankSave WHERE user = 1 and rank = 1
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+				routecode = rs.getInt(1);
+			}
+			stmt.close();
+		}
+		catch (SQLException e) {
+			System.out.println("SQL Exception : " + e.getMessage());
+		}
+		
+		return routecode+1;
+	}
+	
+	
+	public void makeroute(int i, String route) {
+		int routecode = 0;
+		String query = "INSERT INTO makeroute (user, name) VALUES(" + i + "," +"'" +route +"'"+ ")";
+		//SELECT code FROM rankSave WHERE user = 1 and rank = 1
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+
+			stmt.close();
+		}
+		catch (SQLException e) {
+			System.out.println("SQL Exception : " + e.getMessage());
+		}
+	}
+	
+	
+	public void deleteuserinfocopy() {
+		String query = "TRUNCATE userinfocopy";
+		
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+			stmt.close();
+		}
+		catch (SQLException e) {
+			System.out.println("SQL Exception : " + e.getMessage());
+		}
+	}
+	
+	public void deletemakeroute() {
+		String query = "TRUNCATE makeroute";
+		
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+			stmt.close();
+		}
+		catch (SQLException e) {
+			System.out.println("SQL Exception : " + e.getMessage());
+		}
+	}
 
 }

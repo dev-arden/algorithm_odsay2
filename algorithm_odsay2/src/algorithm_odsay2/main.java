@@ -14,6 +14,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+
 //API 3번 호출할거니까 세번 반복
 //다른 유저 시작
 
@@ -29,10 +30,14 @@ public class main {
 		Vector<Integer> commonset = new Vector<Integer>();// 각 유저 버퍼에 담긴 역들중 공통 역들을 담는 버퍼
 
 		db test = new db();
+		
+		test.deletemakeroute();		
+		test.userinfocopy();//나중에 경로를 보여주기 위해서 함수가 실행되면 데이터가 사라질 userinfo를 카피함
+		
 		test.userCount();
 		userCount = test.a;
 		test.userRouteChoice();
-
+		
 		test.Delete2();
 		user[] user = new user[userCount];// userCount에 따라 각 user객체들을 담는 배열
 		for (int i = 0; i < userCount; i++) {
@@ -119,6 +124,42 @@ public class main {
 		}
 
 		test.Delete1();
+		for (int i = 1; i <= userCount; i++) {
+			int dep = test.departure(i);
+			//System.out.println(dep);
+			int des = test.destination(i);
+			//System.out.println(des);
+			int prefer = test.prefer(i);
+			//System.out.println(prefer);
+
+			JSONParser jsonparser = new JSONParser();
+			JSONObject jsonobject = (JSONObject) jsonparser.parse(readUrl(dep, des, prefer));
+			JSONObject json = (JSONObject) jsonobject.get("result");
+			JSONObject json2 = (JSONObject) json.get("stationSet");
+			JSONArray array = (JSONArray) json2.get("stations");
+
+			for (int j = 0; j < array.size(); j++) {
+				JSONObject entity = (JSONObject) array.get(j);
+
+				String sname = (String) entity.get("startName");
+				if(checkduplicate(sname, user[i - 1]) == 0) {
+					user[i-1].routestore.add(sname);
+				}
+				
+
+				String ename = (String) entity.get("endName");
+				if(checkduplicate(ename, user[i - 1]) == 0) {
+					user[i-1].routestore.add(ename);
+				}
+
+			}
+
+			for (int k = 0; k < user[i - 1].routestore.size(); k++) {
+				test.makeroute(i,user[i-1].routestore.get(k));
+			}
+		}
+		test.deleteuserinfocopy();
+
 	}
 
 	// findresult에 x 조건을 주지 않아서 생기는 문제임,,,그렇다면 findresult안에 commonset을 집어넣는게 답인듯
@@ -175,6 +216,48 @@ public class main {
 
 		System.out.println(test.commonResult);
 
+	}
+	
+	private String readUrl(int departure, int destination, int prefer) throws Exception {
+		BufferedReader reader = null;
+
+		try {
+			// https://api.odsay.com/v1/api/subwayPath?lang=0&CID=1000&SID=201&EID=222
+
+			URL url = new URL("https://api.odsay.com/v1/api/subwayPath?lang=0&CID=1000&" + "SID=" + departure + "&EID="
+					+ destination + "&Sopt=" + prefer + "&apiKey=9wndy8Mwrj6EeQZKf1Z9kusSZjU%2BvBpEdeDwCokXgy0");
+			// WcVpRfZ6U%2BAuKf8AgOTZapx9edixkIvmJLWnT9KgiaE-하이드아웃
+			// 15XH4EhsIQGTKIwZAjii5dwtmXtv%2BdVulD4QWniB%2Bjg-히수집
+			// 9loymI1RM20ytIKmWKFe0x8arsNpYKoPSgHLoGhzANE-은비집
+			// FKNgHXbbPDpB2qoqgvkmA3DAKApfxjOfbp%2Fz%2F0gWnOU-학교
+
+			reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+
+			StringBuffer buffer = new StringBuffer();
+
+			String str;
+
+			while ((str = reader.readLine()) != null) {
+				buffer.append(str);
+			}
+
+			return buffer.toString();
+		} finally {
+			if (reader != null)
+				reader.close();
+		}
+	}
+
+	public int checkduplicate(String route, user user) {
+		int check = 0;
+
+		for (int j = 0; j < user.routestore.size(); j++) {
+			if (user.routestore.get(j).contains(route)) {
+				check++;
+			}
+		}
+
+		return check;
 	}
 
 	public static void main(String[] args) {
