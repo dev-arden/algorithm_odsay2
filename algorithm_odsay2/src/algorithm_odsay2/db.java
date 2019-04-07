@@ -205,13 +205,14 @@ public class db {
          }
          stmt.close();
       } catch (SQLException e) {
+    	  System.out.println(query);
          System.out.println("SQL Exception : " + e.getMessage());
       }
       return null;
    }
 
    public void rankSave(int count, int user, int rank, int code, String name) {
-      String sql = "insert into rankSave\r\n" + "VALUES(" + count + "," + user + "," + rank + "," + code +  ",'" + name + "')";
+      String sql = "insert into rankSave(order_num, user, rank, code, name) VALUES(" + count + "," + user + "," + rank + "," + code +  ",'" + name + "')";
       try {
          stmt = conn.createStatement();
          stmt.executeUpdate(sql);
@@ -368,4 +369,79 @@ public class db {
 		}
 	}
 
+	
+	public void namecopy() {
+		String query = "UPDATE userinfo\r\n" + 
+				"SET userinfo.name\r\n" + 
+				"=(SELECT name FROM allUser\r\n" + 
+				"WHERE userinfo.userId = allUser.userID);";
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+
+			stmt.close();
+		}
+		catch (SQLException e) {
+			System.out.println(query);
+			System.out.println("SQL Exception : " + e.getMessage());
+		}
+	}
+	public void userroutecopy() {
+		String query = "UPDATE userinfo\r\n" + 
+				"SET userinfo.userRoute\r\n" + 
+				"=(SELECT userRoute FROM allUser\r\n" + 
+				"WHERE userinfo.userId = allUser.userID);";
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+
+			stmt.close();
+		}
+		catch (SQLException e) {
+			System.out.println(query);
+			System.out.println("SQL Exception : " + e.getMessage());
+		}
+	}
+	public void useridcopy() {
+		String query = "UPDATE rankSave \r\n" + 
+				"SET rankSave.userID \r\n" + 
+				"=(SELECT userId FROM userinfo\r\n" + 
+				"WHERE userinfo.id = rankSave.user);";
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+
+			stmt.close();
+		}
+		catch (SQLException e) {
+			System.out.println(query);
+			System.out.println("SQL Exception : " + e.getMessage());
+		}
+	}
+	public void useridcopy2() {
+		String query = "UPDATE makeroute \r\n" + 
+				"SET makeroute.userID \r\n" + 
+				"=(SELECT userId FROM userinfo\r\n" + 
+				"WHERE userinfo.id = makeroute.user);";
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+
+			stmt.close();
+		}
+		catch (SQLException e) {
+			System.out.println(query);
+			System.out.println("SQL Exception : " + e.getMessage());
+		}
+	}
+	 public void Delete3() {
+	      String sql = "TRUNCATE allUser";
+	      try {
+	         stmt = conn.createStatement();
+	         stmt.executeUpdate(sql);
+	         stmt.close();
+	      } catch (SQLException e) {
+	         System.out.println("SQL Exception : " + e.getMessage());
+	      }
+	   }
 }

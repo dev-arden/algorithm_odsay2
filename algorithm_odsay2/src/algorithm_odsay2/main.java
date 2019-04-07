@@ -31,7 +31,9 @@ public class main {
 
 		db test = new db();
 		
-		test.deletemakeroute();		
+		test.deletemakeroute();
+		test.namecopy();
+		test.userroutecopy();
 		test.userinfocopy();//나중에 경로를 보여주기 위해서 함수가 실행되면 데이터가 사라질 userinfo를 카피함
 		
 		test.userCount();
@@ -122,8 +124,8 @@ public class main {
 
 			}
 		}
+		test.useridcopy();
 
-		test.Delete1();
 		for (int i = 1; i <= userCount; i++) {
 			int dep = test.departure(i);
 			//System.out.println(dep);
@@ -157,7 +159,10 @@ public class main {
 			for (int k = 0; k < user[i - 1].routestore.size(); k++) {
 				test.makeroute(i,user[i-1].routestore.get(k));
 			}
+			test.useridcopy2();
 		}
+		test.Delete1();
+		test.Delete3();
 		test.deleteuserinfocopy();
 
 	}
