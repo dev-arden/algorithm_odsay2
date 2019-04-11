@@ -138,7 +138,7 @@ public class user {
 
 		try {
 			URL url = new URL("https://api.odsay.com/v1/api/subwayStationInfo?lang=0&" + "stationID="
-					+ codestore.get(parameter) + "&apiKey=9wndy8Mwrj6EeQZKf1Z9kusSZjU%2BvBpEdeDwCokXgy0");
+					+ codestore.get(parameter) + "&apiKey=9wndy8Mwrj6EeQZKf1Z9kusSZjU+vBpEdeDwCokXgy0");
 			// WcVpRfZ6U%2BAuKf8AgOTZapx9edixkIvmJLWnT9KgiaE-하이드아웃
 			// 15XH4EhsIQGTKIwZAjii5dwtmXtv%2BdVulD4QWniB%2Bjg-히수집
 			// 9loymI1RM20ytIKmWKFe0x8arsNpYKoPSgHLoGhzANE-은비집
@@ -386,7 +386,7 @@ public class user {
 			// if(codestore.get(0) != commonSet) {
 			URL url = new URL("https://api.odsay.com/v1/api/subwayPath?lang=0&CID=1000&SID=" + codestore.get(0)
 					+ "&EID=" + commonSet + "&Sopt=" + tempFlag
-					+ "&apiKey=9wndy8Mwrj6EeQZKf1Z9kusSZjU%2BvBpEdeDwCokXgy0");
+					+ "&apiKey=9wndy8Mwrj6EeQZKf1Z9kusSZjU+vBpEdeDwCokXgy0");
 			// WcVpRfZ6U%2BAuKf8AgOTZapx9edixkIvmJLWnT9KgiaE-하이드아웃
 			// 15XH4EhsIQGTKIwZAjii5dwtmXtv%2BdVulD4QWniB%2Bjg-히수집
 			// 9loymI1RM20ytIKmWKFe0x8arsNpYKoPSgHLoGhzANE-은비집

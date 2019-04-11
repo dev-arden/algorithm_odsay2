@@ -98,7 +98,7 @@ public class main {
 		showCommonset(commonset, test);
 
 		for (int i = 0; i < user.length; i++) {
-			System.out.println("<user" + (i + 1) + ">");
+			//System.out.println("<user" + (i + 1) + ">");
 			user[i].rankResult.addAll(0, user[i].makeRanking(test.commonResult));
 		}
 
@@ -230,7 +230,7 @@ public class main {
 			// https://api.odsay.com/v1/api/subwayPath?lang=0&CID=1000&SID=201&EID=222
 
 			URL url = new URL("https://api.odsay.com/v1/api/subwayPath?lang=0&CID=1000&" + "SID=" + departure + "&EID="
-					+ destination + "&Sopt=" + prefer + "&apiKey=9wndy8Mwrj6EeQZKf1Z9kusSZjU%2BvBpEdeDwCokXgy0");
+					+ destination + "&Sopt=" + prefer + "&apiKey=9wndy8Mwrj6EeQZKf1Z9kusSZjU+vBpEdeDwCokXgy0");
 			// WcVpRfZ6U%2BAuKf8AgOTZapx9edixkIvmJLWnT9KgiaE-하이드아웃
 			// 15XH4EhsIQGTKIwZAjii5dwtmXtv%2BdVulD4QWniB%2Bjg-히수집
 			// 9loymI1RM20ytIKmWKFe0x8arsNpYKoPSgHLoGhzANE-은비집
