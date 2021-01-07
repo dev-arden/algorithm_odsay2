@@ -7,6 +7,8 @@
 * OS : Android
 * 서버 : AWS EC2, Node.js
 * 데이터베이스 : AWS RDS, MySQL
+## 시스템 구성도
+![image](https://user-images.githubusercontent.com/26674094/103957717-a88dc000-518e-11eb-835d-361711139882.png)
 ## 알고리즘
 > 지하철 노선도를 기반으로 사용자에게 최적의 만남 장소를 추천하는 BFS 기반 알고리즘 개발(특허 출원 (10-2019-0066162))
 1. 사용자가 입력한 지하철 역의 주변 역들을 하나하나 탐색하며 code set에 저장한다.
