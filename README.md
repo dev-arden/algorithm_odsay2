@@ -27,8 +27,9 @@
 * 알고리즘#2 : <https://github.com/smulionOong/android_graduate_rain>
 * 알고리즘#3 : <https://github.com/smulionOong/graduate_algorithm_final>
 * 알고리즘#4 : <https://github.com/smulionOong/algorithm_odsay>
-* 알고리즘#5 : <https://github.com/smulionOong/algorithm_odsay2_showroute>
-* 알고리즘#6 : <https://github.com/smulionOong/algorithm_odsay2>
+* 알고리즘#5 : <https://github.com/smulionOong/odsayhs>
+* 알고리즘#6 : <https://github.com/smulionOong/algorithm_odsay2_showroute>
+* 알고리즘#7 : <https://github.com/smulionOong/algorithm_odsay2>
 * 모바일(안드로이드)#1 : <https://github.com/smulionOong/Goodplace>
 * 모바일(안드로이드)#2 : <https://github.com/smulionOong/Goodplace2_MAP>
 
