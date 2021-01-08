@@ -27,10 +27,7 @@
 * 알고리즘#2 : 
 * 알고리즘#3 : 
 * 알고리즘#4 : <https://github.com/smulionOong/algorithm_odsay>
-* 알고리즘#5 : 
+* 알고리즘#5 : <https://github.com/smulionOong/algorithm_odsay2_showroute>
 * 알고리즘#6 : <https://github.com/smulionOong/algorithm_odsay2>
 * 모바일(안드로이드)#1 : <https://github.com/smulionOong/Goodplace>
 * 모바일(안드로이드)#2 : <https://github.com/smulionOong/Goodplace2_MAP>
-* 기타(API 적용해본 코드) : <https://github.com/smulionOong/algorithm_odsay>
-* 기타(API 적용해본 코드) : <https://github.com/smulionOong/algorithm_odsay2_showroute>
-
